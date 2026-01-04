@@ -2,7 +2,7 @@
 import { useNavigate, Link, useParams } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
 import { useState, useContext, useEffect} from "react";
-import actions from "../assets/functions.js";
+import actions from "../assets/scripts/functions.js";
 
 
 export const Form = () => {

@@ -1,13 +1,13 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import actions from "../assets/functions.js";
+import actions from "../assets/scripts/functions.js";
 
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
 	useEffect(() => {
-		fetch(`https://playground.4geeks.com/contact/agendas/Dani_list`, {
+		fetch(`https://playground.4geeks.com/contact/diary/Dani_list`, {
 			method: 'POST',
 		})
 			.then(resp => resp.json())

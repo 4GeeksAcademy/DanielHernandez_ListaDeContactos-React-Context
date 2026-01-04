@@ -2,7 +2,7 @@ import React from 'react';
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from 'react-router-dom';
 import contactPic from "../assets/img/rigo-baby.jpg";
-import actions from "../assets/functions.js";
+import actions from "../assets/scripts/functions.js";
 
 export const Contact = ({contact}) => {
     const { store, dispatch } = useGlobalReducer();

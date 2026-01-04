@@ -1,4 +1,4 @@
-const API = 'https://playground.4geeks.com/contact/agendas/Dani_list';
+const API = 'https://playground.4geeks.com/contact/diary/Dani_list';
 
 function getContacts(dispatch) {
     fetch(`${API}/contacts`)
@@ -41,7 +41,7 @@ function editContact(dispatch, id, contacto) {
 
 function deleteContact(dispatch, id) {
     console.log(id)
-    fetch(`https://playground.4geeks.com/contact/agendas/Dani_list/contacts/${id}`, {
+    fetch(`https://playground.4geeks.com/contact/diary/Dani_list/contacts/${id}`, {
         method: 'DELETE'
     })
         .then((response) => {
@@ -52,4 +52,4 @@ function deleteContact(dispatch, id) {
         .catch(error => console.error('Error al eliminar contacto:', error));
 }
 
-export default { getContactos, añadirContacto, editarContacto, eliminarContacto };
+export default { getContacts, addContact, editContact, deleteContact };
