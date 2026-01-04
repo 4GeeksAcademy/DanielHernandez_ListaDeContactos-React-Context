@@ -1,7 +1,7 @@
 // Import necessary components from react-router-dom and other parts of the application.
 import { useNavigate, Link, useParams } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
-import { useState, useContext, useEffect} from "react";
+import { useState, useEffect} from "react";
 import actions from "../assets/scripts/functions.js";
 
 
@@ -36,7 +36,7 @@ export const Form = () => {
   useEffect(() => {
     if (id) {
       const contact = store.contacts.find(e => e.id == id)
-      if (contact ) {
+      if (contact) {
         setNewInput(contact)
       }
     }

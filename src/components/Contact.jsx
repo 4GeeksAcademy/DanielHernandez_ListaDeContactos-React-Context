@@ -5,7 +5,7 @@ import contactPic from "../assets/img/rigo-baby.jpg";
 import actions from "../assets/scripts/functions.js";
 
 export const Contact = ({contact}) => {
-    const { store, dispatch } = useGlobalReducer();
+    const { dispatch } = useGlobalReducer();
     console.log("Contact id:", contact.id);
     return (
         <div className=" d-flex list-group-item justify-content-between align-items-center p-4">
