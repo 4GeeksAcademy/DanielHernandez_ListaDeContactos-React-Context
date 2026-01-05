@@ -1,55 +1,62 @@
-const API = 'https://playground.4geeks.com/agendas/contacts/Dani_list';
+const API = "https://playground.4geeks.com/contact/agendas/Dani_list";
 
-function getContacts(dispatch) {
-    fetch(`${API}/contacts`)
-        .then(resp => resp.json())
-        .then(data => {
-            console.log("Lista de contactos:", data);
-            dispatch({ type: 'load_contacts', payload: data.contacts })
-        })
-        .catch(error => console.log(error))
-        .catch(error => console.error('Error al obtener contactos:', error));
-}
+const getContacts = async (dispatch) => {
+  try {
+    const resp = await fetch(`${API}/contacts`);
+    const data = await resp.json();
+    dispatch({ type: "load_contacts", payload: data.contacts });
+  } catch (error) {
+    console.error("Error al obtener contactos:", error);
+  }
+};
 
-function addContact(dispatch, contacto) {
-    fetch(`${API}/contacts`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contacto)
-    })
-        .then(response => response.json())
-        .then(data => {
-            dispatch({ type: 'add_contact', payload: data });
-        })
-        .catch(error => console.error('Error al añadir contacto:', error));
-}
+const addContact = async (dispatch, contact) => {
+  try {
+    const resp = await fetch(`${API}/contacts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(contact),
+    });
 
-function editContact(dispatch, id, contacto) {
-    fetch(`${API}/contacts/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contacto)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                dispatch({ type: 'edit_contact', payload: data });
-            }
-        })
-        .catch(error => console.error('Error al editar contacto:', error));
-}
+    const data = await resp.json();
+    dispatch({ type: "add_contact", payload: data });
+  } catch (error) {
+    console.error("Error al crear contacto:", error);
+  }
+};
 
-function deleteContact(dispatch, id) {
-    console.log(id)
-    fetch(`https://playground.4geeks.com/agendas/Dani_list/contacts/${id}`, {
-        method: 'DELETE'
-    })
-        .then((response) => {
-            if (response.ok) {
-                dispatch({ type: 'delete_contact', payload: id })
-            };
-        })
-        .catch(error => console.error('Error al eliminar contacto:', error));
-}
+const updateContact = async (dispatch, id, contact) => {
+  try {
+    const resp = await fetch(`${API}/contacts/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(contact),
+    });
 
-export default { getContacts, addContact, editContact, deleteContact };
+    const data = await resp.json();
+    dispatch({ type: "update_contact", payload: data });
+  } catch (error) {
+    console.error("Error al actualizar contacto:", error);
+  }
+};
+
+const deleteContact = async (dispatch, id) => {
+  try {
+    const resp = await fetch(`${API}/contacts/${id}`, {
+      method: "DELETE",
+    });
+
+    if (resp.ok) {
+      dispatch({ type: "delete_contact", payload: id });
+    }
+  } catch (error) {
+    console.error("Error al borrar contacto:", error);
+  }
+};
+
+export default {
+  getContacts,
+  addContact,
+  updateContact,
+  deleteContact,
+};

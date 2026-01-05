@@ -1,34 +1,41 @@
 export const initialStore = () => {
   return {
     contacts: []
-  }
-}
+  };
+};
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
 
-    case 'load_contac':
-      return { ...store, contacts: action.payload };
-
-    case 'add_contact':
-      return { ...store, contacts: [...store.contacts, action.payload] };
-
-    case 'edit_contact':
+    case "load_contacts":
       return {
         ...store,
-        contacts: store.contacts.map((contact) => (
-          contact.id === action.payload.id ? action.payload : contact))
+        contacts: action.payload
       };
-      
-    case 'delete_contact':
+
+    case "add_contact":
       return {
         ...store,
-        contacts: store.contacts.filter((contact) => (
-          contact.id !== action.payload))
+        contacts: [...store.contacts, action.payload]
+      };
+
+    case "update_contact":
+      return {
+        ...store,
+        contacts: store.contacts.map(contact =>
+          contact.id === action.payload.id ? action.payload : contact
+        )
+      };
+
+    case "delete_contact":
+      return {
+        ...store,
+        contacts: store.contacts.filter(
+          contact => contact.id !== action.payload
+        )
       };
 
     default:
       return store;
-      //throw Error('Unknown action.');
   }
 }
