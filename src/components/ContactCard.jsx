@@ -41,7 +41,7 @@ const ContactCard = ({ contact }) => {
 
       <div>
         <Link
-          to={`/formulario/${contact.id}`}
+          to={`/form/edit/${contact.id}`}
           className="btn btn-link text-dark me-3"
         >
           <i className="fas fa-pencil-alt"></i>

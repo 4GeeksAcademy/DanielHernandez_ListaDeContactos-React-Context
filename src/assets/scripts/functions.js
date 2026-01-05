@@ -1,5 +1,6 @@
 const API = "https://playground.4geeks.com/contact/agendas/Dani_list";
 
+// Obtenemos la lista de contactos
 const getContacts = async (dispatch) => {
   try {
     const resp = await fetch(`${API}/contacts`);
@@ -10,6 +11,7 @@ const getContacts = async (dispatch) => {
   }
 };
 
+// Añadimos un contacto
 const addContact = async (dispatch, contact) => {
   try {
     const resp = await fetch(`${API}/contacts`, {
@@ -20,11 +22,13 @@ const addContact = async (dispatch, contact) => {
 
     const data = await resp.json();
     dispatch({ type: "add_contact", payload: data });
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error al crear contacto:", error);
   }
 };
 
+// Actualizamos el contacto seleccionado
 const updateContact = async (dispatch, id, contact) => {
   try {
     const resp = await fetch(`${API}/contacts/${id}`, {
@@ -35,11 +39,13 @@ const updateContact = async (dispatch, id, contact) => {
 
     const data = await resp.json();
     dispatch({ type: "update_contact", payload: data });
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error al actualizar contacto:", error);
   }
 };
 
+// Eliminamos un contacto
 const deleteContact = async (dispatch, id) => {
   try {
     const resp = await fetch(`${API}/contacts/${id}`, {
@@ -49,7 +55,8 @@ const deleteContact = async (dispatch, id) => {
     if (resp.ok) {
       dispatch({ type: "delete_contact", payload: id });
     }
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error al borrar contacto:", error);
   }
 };
